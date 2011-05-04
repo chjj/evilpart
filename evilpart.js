@@ -7,7 +7,8 @@ module.exports = function evilpart(type, body) {
   try {
     type = type.match(/boundary=([^;]+)/);
     
-    key = '--' + type[1].trim().replace(/([-.*+?^${}()|\[\]\\])/g, '\\$1');
+    key = '--' + type[1].replace(/^["']|["']$/g, '').trim()
+      .replace(/([-.*+?^${}()|\[\]\\])/g, '\\$1');
     part = new RegExp(key + '\\r\\n([\\s\\S]+?)\\r\\n' + key + '--', 'g');
     
     body.replace(part, function(__, data) {
