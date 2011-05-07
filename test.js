@@ -1,5 +1,4 @@
 var http = require('http');
-
 var evilpart = require('./evilpart');
 
 http.createServer(function(req, res) {
@@ -19,7 +18,6 @@ http.createServer(function(req, res) {
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
     var body = '';
     req.on('data', function(data) {
-      console.log('data');
       body += data.toString('utf-8');
     }).on('end', function() {
       res.end(JSON.stringify(evilpart(req.headers['content-type'], body), null, 2));
