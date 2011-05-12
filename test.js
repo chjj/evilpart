@@ -9,6 +9,7 @@ http.createServer(function(req, res) {
       '<!doctype html>',
       '<title>multi</title>',
       '<form action="/" method="POST" enctype="multipart/form-data">',
+      '  <input type="text" name="text">',
       '  <input type="file" name="myfile">',
       '  <input type="submit" value="submit">',
       '</form>'

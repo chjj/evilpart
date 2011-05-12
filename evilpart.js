@@ -10,7 +10,7 @@ module.exports = function evilpart(type, body) {
   key = '--' + type[1].trim()
     .replace(/^["']|["']$/g, '')
     .replace(/([-.*+?^${}()|\[\]\\])/g, '\\$1');
-  part = new RegExp(key + '\\r\\n([\\s\\S]+?)\\r\\n' + key + '--', 'g');
+  part = new RegExp(key + '\\r\\n([\\s\\S]+?)\\r\\n(?=' + key + ')', 'g');
   
   body.replace(part, function(__, data) {
     var head = {}, meta = {};
